@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const user = express.Router();
 const db = require("../config/database");
+const auth = require('../middleware/auth')
 
 user.post("/signin", async (req, res, next) => {
     const { user_name, user_mail, user_password, user_app, user_apm, user_tel, user_dir } = req.body;
@@ -19,7 +20,7 @@ user.post("/signin", async (req, res, next) => {
     return res.status(500).json({ code: 500, message: "Campos incompletos" });
 });
 
-user.post("/login", async (req, res, next) =>{
+user.post("/login", async (req, res, next) => {
     const { user_mail, user_password } = req.body;
     const query = `SELECT * FROM user WHERE user_mail = '${user_mail}' AND user_password = '${user_password}'`;
     const rows = await db.query(query);
@@ -39,6 +40,8 @@ user.post("/login", async (req, res, next) =>{
     }
     return res.status(500).json({ code: 500, message: "Campos incompletos" });
 });
+//autorizacion
+user.use(auth);
 
 user.delete("/:id([0-9]{1,2})", async (req, res, next) => {
     const query = `DELETE FROM user WHERE user_id =${req.params.id}`;
