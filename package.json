@@ -4,17 +4,31 @@
   "description": "employee control",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mauricioc22/rh-tn.git.git"
   },
   "keywords": [
     "api",
     "rest",
+    "jwt",
+    "mysql",
     "express",
     "nodejs"
   ],
   "author": "Mauricio CP",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mauricioc22/rh-tn/issues"
+  },
+  "homepage": "https://github.com/Mauricioc22/rh-tn#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20"
   }
 }
